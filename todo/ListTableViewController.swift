@@ -37,6 +37,11 @@ class ListTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let selectedIndexPath = tableView.indexPathForSelectedRow,
+            let todoViewController = segue.destination as? TodoViewController {
+            todoViewController.listItem = list.itemAt(index: selectedIndexPath.row)
+            todoViewController.delegate = self
+        }
         if let navController = segue.destination as? UINavigationController {
             if let todoViewController = navController.topViewController as? TodoViewController {
                 todoViewController.delegate = self
