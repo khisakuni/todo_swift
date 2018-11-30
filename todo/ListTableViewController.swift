@@ -33,7 +33,15 @@ class ListTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     func addListItem(_ listItem: ListItem) {
-        list.add(item: listItem)
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            // Update
+            list.update(at: selectedIndexPath.row, with: listItem)
+        } else {
+            // Add new
+            list.add(item: listItem)
+        }
+        tableView.reloadData()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

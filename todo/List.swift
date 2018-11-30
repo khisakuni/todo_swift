@@ -34,6 +34,10 @@ class List {
     func itemAt(index: Int) -> ListItem {
         return self.items[index]
     }
+    
+    func update(at: Int, with: ListItem) {
+        items[at] = with
+    }
 }
 
 struct ListItem {
