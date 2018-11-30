@@ -49,7 +49,14 @@ class TodoViewController: UIViewController {
     }
     
     func dissmissMe() {
-        dismiss(animated: true, completion: nil)
+        if presentingViewController != nil {
+            // Was presented via a modal segue.
+            dismiss(animated: true, completion: nil)
+        } else {
+            // Was pushed onto navigation stack.
+            navigationController!.popViewController(animated: true)
+        }
+        
     }
 }
 
