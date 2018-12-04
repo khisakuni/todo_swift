@@ -38,6 +38,10 @@ class List {
     func update(at: Int, with: ListItem) {
         items[at] = with
     }
+    
+    func remove(at: Int) {
+        items.remove(at: at)
+    }
 }
 
 struct ListItem {
