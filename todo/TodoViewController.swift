@@ -18,16 +18,16 @@ class TodoViewController: UIViewController {
     var delegate: TodoViewControllerDelegate?
     var listItem: ListItem?
 
-    @IBOutlet weak var input: UITextField!
-    
+    @IBOutlet weak var nameInput: UITextField!
+    @IBOutlet weak var categoryInput: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
-    @IBAction func validate(_ sender: UITextField) {
-        if input.text!.count > 0 {
-            saveButton.isEnabled = true
-        } else {
-            saveButton.isEnabled = false
-        }
+    @IBAction func validateName(_ sender: Any) {
+        validate()
+    }
+    
+    @IBAction func validateCategory(_ sender: Any) {
+        validate()
     }
     
     @IBAction func touchCancel(_ sender: Any) {
@@ -35,8 +35,7 @@ class TodoViewController: UIViewController {
     }
     
     @IBAction func touchSave(_ sender: Any) {
-        
-        let listItem = ListItem(value: input.text!)
+        let listItem = ListItem(value: nameInput.text!, category: categoryInput.text!)
         delegate?.saveTodo(listItem)
         dissmissMe()
     }
@@ -45,7 +44,8 @@ class TodoViewController: UIViewController {
         super.viewDidLoad()
         saveButton.isEnabled = false
         if let listItem = listItem {
-            input.text = listItem.value
+            nameInput.text = listItem.value
+            categoryInput.text = listItem.category
         }
     }
     
@@ -57,7 +57,14 @@ class TodoViewController: UIViewController {
             // Was pushed onto navigation stack.
             navigationController!.popViewController(animated: true)
         }
-        
+    }
+    
+    func validate() {
+        if nameInput.text!.count > 0 && categoryInput.text!.count > 0 {
+            saveButton.isEnabled = true
+        } else {
+            saveButton.isEnabled = false
+        }
     }
 }
 

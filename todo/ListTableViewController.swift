@@ -40,6 +40,7 @@ class ListTableViewController: UITableViewController {
             // Add new
             list.add(item: listItem)
         }
+        list.sort(items: &list.items)
         tableView.reloadData()
         
     }
@@ -67,7 +68,9 @@ class ListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "listItemCell", for: indexPath)
-        cell.textLabel?.text = "Row #\(indexPath.row) - \(list.itemAt(index: indexPath.row).value)"
+        let item = list.itemAt(index: indexPath.row)
+        cell.textLabel?.text = item.value
+        cell.detailTextLabel?.text = item.category
         return cell
     }
 

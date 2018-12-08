@@ -18,18 +18,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mfh-Yc-Tqb">
-                                <rect key="frame" x="103" y="140" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mfh-Yc-Tqb">
+                                <rect key="frame" x="50" y="153" width="275" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="validate:" destination="BYZ-38-t0r" eventType="editingChanged" id="3h1-Er-ei7"/>
+                                    <action selector="validateName:" destination="BYZ-38-t0r" eventType="editingChanged" id="QaC-cA-CQn"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x2C-UX-CUj">
+                                <rect key="frame" x="50" y="191" width="275" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="validateCategory:" destination="BYZ-38-t0r" eventType="editingChanged" id="rC9-nf-jUe"/>
                                 </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="mfh-Yc-Tqb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="37" id="0Kv-pL-9Nd"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="x2C-UX-CUj" secondAttribute="trailing" constant="50" id="5xO-6d-gGm"/>
+                            <constraint firstItem="mfh-Yc-Tqb" firstAttribute="leading" secondItem="x2C-UX-CUj" secondAttribute="leading" id="UNg-As-rdg"/>
+                            <constraint firstItem="x2C-UX-CUj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="V9E-fg-Yee"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mfh-Yc-Tqb" secondAttribute="trailing" constant="50" id="bkT-zo-Qxt"/>
+                            <constraint firstItem="mfh-Yc-Tqb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="hGb-p1-Zm2"/>
+                            <constraint firstItem="x2C-UX-CUj" firstAttribute="top" secondItem="mfh-Yc-Tqb" secondAttribute="bottom" constant="8" symbolic="YES" id="ubc-D5-MTx"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Book" id="24P-oQ-Is6">
@@ -45,7 +62,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="input" destination="mfh-Yc-Tqb" id="6wy-DS-Aa8"/>
+                        <outlet property="categoryInput" destination="x2C-UX-CUj" id="Lzc-Ig-sHL"/>
+                        <outlet property="nameInput" destination="mfh-Yc-Tqb" id="KhJ-pr-GJr"/>
                         <outlet property="saveButton" destination="v5v-Wj-Gcj" id="h9s-g8-WOp"/>
                     </connections>
                 </viewController>
@@ -62,7 +80,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="listItemCell" textLabel="pOu-mA-34B" style="IBUITableViewCellStyleDefault" id="EH6-1w-ttj">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="listItemCell" textLabel="pOu-mA-34B" detailTextLabel="dft-6S-DD7" style="IBUITableViewCellStyleSubtitle" id="EH6-1w-ttj">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EH6-1w-ttj" id="fQh-ND-own">
@@ -70,9 +88,16 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pOu-mA-34B">
-                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dft-6S-DD7">
+                                            <rect key="frame" x="16" y="25.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -89,6 +114,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Todo" id="8hW-8d-qo5">
+                        <barButtonItem key="leftBarButtonItem" id="nRY-YW-rzy">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="4GX-qT-qaO">
+                                <rect key="frame" x="16" y="7" width="141" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Name"/>
+                                    <segment title="Category"/>
+                                </segments>
+                            </segmentedControl>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="D4G-gn-75q">
                             <connections>
                                 <segue destination="lU2-3f-oY0" kind="presentation" id="b4I-5I-DAo"/>
@@ -138,6 +173,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="u12-4U-pqO"/>
+        <segue reference="GjN-BG-lhT"/>
     </inferredMetricsTieBreakers>
 </document>

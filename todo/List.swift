@@ -27,8 +27,8 @@ class List {
         items.append(item)
     }
     
-    func add(item: String) {
-        items.append(ListItem(value: item))
+    func add(value: String, category: String) {
+        items.append(ListItem(value: value, category: category))
     }
     
     func itemAt(index: Int) -> ListItem {
@@ -42,8 +42,15 @@ class List {
     func remove(at: Int) {
         items.remove(at: at)
     }
+    
+    func sort(items: inout [ListItem]) {
+        items.sort(by: {
+            return $0.value.localizedLowercase < $1.value.localizedLowercase
+        })
+    }
 }
 
 struct ListItem {
     var value: String
+    var category: String
 }
