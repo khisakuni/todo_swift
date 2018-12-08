@@ -10,6 +10,16 @@ import Foundation
 
 class List {
     var items: [ListItem]
+    var sortBy: order = order.value {
+        didSet {
+            sort(items: &items)
+        }
+    }
+    
+    enum order: Int {
+        case value
+        case category
+    }
     
     var count: Int {
         return self.items.count
@@ -44,9 +54,12 @@ class List {
     }
     
     func sort(items: inout [ListItem]) {
-        items.sort(by: {
-            return $0.value.localizedLowercase < $1.value.localizedLowercase
-        })
+        switch sortBy {
+        case .value:
+            items.sort(by: {return $0.value.localizedLowercase < $1.value.localizedLowercase})
+        case .category:
+            items.sort(by: {return $0.category.localizedLowercase < $1.category.localizedLowercase})
+        }
     }
 }
 

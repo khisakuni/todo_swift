@@ -19,7 +19,13 @@ class ListTableViewController: UITableViewController {
 
     
     var list: List = List()
-
+    
+    @IBAction func changedSegment(_ sender: UISegmentedControl) {
+        guard let sortBy = List.order(rawValue: sender.selectedSegmentIndex) else {return}
+        list.sortBy = sortBy
+        tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

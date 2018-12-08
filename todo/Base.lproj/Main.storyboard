@@ -122,7 +122,13 @@
                                     <segment title="Name"/>
                                     <segment title="Category"/>
                                 </segments>
+                                <connections>
+                                    <action selector="changedSegment:" destination="nzK-eJ-ODd" eventType="valueChanged" id="lKc-8b-3cg"/>
+                                </connections>
                             </segmentedControl>
+                            <connections>
+                                <action selector="changedSegment:" destination="nzK-eJ-ODd" id="vxe-9W-qSX"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="D4G-gn-75q">
                             <connections>
