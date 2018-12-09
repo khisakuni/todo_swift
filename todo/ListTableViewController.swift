@@ -8,16 +8,8 @@
 
 import UIKit
 
-extension ListTableViewController: TodoViewControllerDelegate {
-    func saveTodo(_ listItem: ListItem) {
-        addListItem(listItem)
-        tableView.reloadData()
-    }
-}
-
 class ListTableViewController: UITableViewController {
-
-    
+    let searchController = UISearchController(searchResultsController: nil)
     var list: List = List()
     
     @IBAction func changedSegment(_ sender: UISegmentedControl) {
@@ -29,11 +21,12 @@ class ListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        searchController.searchResultsUpdater = self
+        if #available(iOS 11.0, *) {
+            self.navigationItem.searchController = searchController
+        } else {
+            tableView.tableHeaderView = searchController.searchBar
+        }
     }
 
     // MARK: - Table view data source
@@ -124,4 +117,19 @@ class ListTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension ListTableViewController: TodoViewControllerDelegate {
+    func saveTodo(_ listItem: ListItem) {
+        addListItem(listItem)
+        tableView.reloadData()
+    }
+}
+
+extension ListTableViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text else {return}
+        list.filterBy = searchText
+        tableView.reloadData()
+    }
 }
