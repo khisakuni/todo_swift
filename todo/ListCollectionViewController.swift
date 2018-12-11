@@ -36,15 +36,22 @@ class ListCollectionViewController: UICollectionViewController {
         return reusableView
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        if let selectedIndexPath = collectionView?.indexPathsForSelectedItems?.first,
+            let todoViewController = segue.destination as? TodoViewController {
+            // Editing
+            todoViewController.listItem = list.itemAt(index: selectedIndexPath.row)
+            todoViewController.delegate = self
+        } else if let navController = segue.destination as? UINavigationController,
+            let viewController = navController.topViewController as? TodoViewController {
+            // Adding
+            viewController.delegate = self
+        }
     }
-    */
+ 
 
     // MARK: UICollectionViewDataSource
 
@@ -98,7 +105,22 @@ class ListCollectionViewController: UICollectionViewController {
     
     }
     */
+    
+    func addListItem(_ listItem: ListItem) {
+        if let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first {
+            list.update(at: selectedIndexPath.row, with: listItem)
+        } else {
+            list.add(item: listItem)
+        }
+        list.sort(items: &list.items)
+        collectionView?.reloadSections(NSIndexSet(index: 1) as IndexSet)
+    }
+}
 
+extension ListCollectionViewController: TodoViewControllerDelegate {
+    func saveTodo(_ listItem: ListItem) {
+        addListItem(listItem)
+    }
 }
 
 extension ListCollectionViewController: UISearchResultsUpdating {
