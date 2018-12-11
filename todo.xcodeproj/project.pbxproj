@@ -14,6 +14,8 @@
 		DE54608B2198A9BB00631A22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE5460892198A9BB00631A22 /* LaunchScreen.storyboard */; };
 		DE5460932198AAEF00631A22 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5460922198AAEF00631A22 /* List.swift */; };
 		DE5460952198F5BB00631A22 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5460942198F5BB00631A22 /* ListTableViewController.swift */; };
+		DE61AD4321BE37AC00B7A5B0 /* ListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE61AD4221BE37AC00B7A5B0 /* ListCollectionViewController.swift */; };
+		DE61AD4521BE3C8F00B7A5B0 /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE61AD4421BE3C8F00B7A5B0 /* ListCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		DE54608C2198A9BB00631A22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE5460922198AAEF00631A22 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		DE5460942198F5BB00631A22 /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
+		DE61AD4221BE37AC00B7A5B0 /* ListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewController.swift; sourceTree = "<group>"; };
+		DE61AD4421BE3C8F00B7A5B0 /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,11 +65,13 @@
 				DE5460802198A9BA00631A22 /* AppDelegate.swift */,
 				DE5460822198A9BA00631A22 /* TodoViewController.swift */,
 				DE5460842198A9BA00631A22 /* Main.storyboard */,
+				DE61AD4421BE3C8F00B7A5B0 /* ListCollectionViewCell.swift */,
 				DE5460942198F5BB00631A22 /* ListTableViewController.swift */,
 				DE5460872198A9BB00631A22 /* Assets.xcassets */,
 				DE5460892198A9BB00631A22 /* LaunchScreen.storyboard */,
 				DE54608C2198A9BB00631A22 /* Info.plist */,
 				DE5460922198AAEF00631A22 /* List.swift */,
+				DE61AD4221BE37AC00B7A5B0 /* ListCollectionViewController.swift */,
 			);
 			path = todo;
 			sourceTree = "<group>";
@@ -141,8 +147,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE61AD4521BE3C8F00B7A5B0 /* ListCollectionViewCell.swift in Sources */,
 				DE5460832198A9BA00631A22 /* TodoViewController.swift in Sources */,
 				DE5460812198A9BA00631A22 /* AppDelegate.swift in Sources */,
+				DE61AD4321BE37AC00B7A5B0 /* ListCollectionViewController.swift in Sources */,
 				DE5460932198AAEF00631A22 /* List.swift in Sources */,
 				DE5460952198F5BB00631A22 /* ListTableViewController.swift in Sources */,
 			);
