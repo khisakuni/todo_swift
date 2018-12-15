@@ -264,7 +264,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="wZM-8a-LW8">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="5iz-DB-CDM" customClass="TabBarController" customModule="todo" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController restorationIdentifier="tabBarController" automaticallyAdjustsScrollViewInsets="NO" id="5iz-DB-CDM" customClass="TabBarController" customModule="todo" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sgE-zb-BHR">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
