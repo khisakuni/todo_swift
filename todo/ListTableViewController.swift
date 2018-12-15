@@ -46,7 +46,6 @@ class ListTableViewController: UITableViewController, Injectable {
             // Add new
             list.add(item: listItem)
         }
-        list.sort(items: &list.items)
         tableView.reloadData()
         
     }

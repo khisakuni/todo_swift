@@ -12,9 +12,11 @@ protocol TodoViewControllerDelegate {
     func saveTodo(_ listItem: ListItem)
 }
 
+private let isbnKey = ""
+
 class TodoViewController: UIViewController {
     
-    var list = List(items: [])
+    var list = List()
     var delegate: TodoViewControllerDelegate?
     var listItem: ListItem?
 

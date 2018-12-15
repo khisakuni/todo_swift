@@ -115,7 +115,6 @@ class ListCollectionViewController: UICollectionViewController, Injectable {
         } else {
             list.add(item: listItem)
         }
-        list.sort(items: &list.items)
         collectionView?.reloadSections(NSIndexSet(index: 1) as IndexSet)
     }
 }

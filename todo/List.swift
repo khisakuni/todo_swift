@@ -8,9 +8,23 @@
 
 import Foundation
 
+private let appSupportDirectory: URL = {
+    let url = FileManager().urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+    if !FileManager().fileExists(atPath: url.path) {
+        do {
+            try FileManager().createDirectory(at: url, withIntermediateDirectories: false)
+        } catch {
+            print("\(error.localizedDescription)")
+        }
+    }
+    return url
+}()
+
+private let itemsFile = appSupportDirectory.appendingPathComponent("Items")
+
 class List {
-    var items: [ListItem]
-    var filtered: [ListItem]
+    private lazy var items: [ListItem] = self.load()
+    var filtered: [ListItem] = []
     var sortBy: order = order.value {
         didSet {
             sort(items: &items)
@@ -30,23 +44,17 @@ class List {
     var count: Int {
         return filterBy.isEmpty ? items.count : filtered.count
     }
-    
-    init() {
-        self.items = []
-        self.filtered = []
-    }
-    
-    init(items: [ListItem]) {
-        self.items = items
-        self.filtered = []
-    }
-    
+        
     func add(item: ListItem) {
         items.append(item)
+        sort(items: &items)
+        save()
     }
     
     func add(value: String, category: String) {
         items.append(ListItem(value: value, category: category))
+        sort(items: &items)
+        save()
     }
     
     func itemAt(index: Int) -> ListItem {
@@ -67,7 +75,7 @@ class List {
             sort(items: &items)
             filter()
         }
-        
+        save()
     }
     
     func remove(at: Int) {
@@ -82,6 +90,7 @@ class List {
             }
             items.remove(at: index)
         }
+        save()
     }
     
     func sort(items: inout [ListItem]) {
@@ -99,11 +108,48 @@ class List {
             
         }
     }
+    
+    // MARK: Local storage
+    func save() {
+        (items.map({$0.dictionary}) as NSArray).write(to:itemsFile, atomically: true)
+    }
+    
+    private func load() -> [ListItem] {
+        return loadFromDisk() ?? []
+        
+    }
+    
+    func loadFromDisk() -> [ListItem]? {
+        guard let array = NSArray(contentsOf: itemsFile) as? [[String: String]] else {return nil}
+        guard let items = array.map({ListItem(item:$0)}) as? [ListItem] else {return nil}
+        return items
+    }
 }
 
 struct ListItem {
     var value: String
     var category: String
+    var dictionary: [String: String] {
+        return [
+            Key.value: value,
+            Key.category: category
+        ]
+    }
+    init(value: String, category: String) {
+        self.value = value
+        self.category = category
+    }
+    init?(item: [String: String]) {
+        guard let category = item[Key.category],
+            let value = item[Key.value]
+            else {return nil}
+        self.init(value: value, category: category)
+    }
+}
+
+internal struct Key {
+    static let value = "value"
+    static let category = "category"
 }
 
 extension ListItem: Equatable {}
