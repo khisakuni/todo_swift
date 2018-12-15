@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ListTableViewController: UITableViewController {
+class ListTableViewController: UITableViewController, Injectable {
     let searchController = UISearchController(searchResultsController: nil)
-    var list: List = List()
+    var list:List!
     
     @IBAction func changedSegment(_ sender: UISegmentedControl) {
         guard let sortBy = List.order(rawValue: sender.selectedSegmentIndex) else {return}
@@ -28,8 +28,15 @@ class ListTableViewController: UITableViewController {
             tableView.tableHeaderView = searchController.searchBar
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //super.viewDidAppear(animated)
+        tableView?.reloadData()
+    }
 
-    // MARK: - Table view data source
+    func inject(data: List) {
+        self.list = data
+    }
     
     func addListItem(_ listItem: ListItem) {
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
@@ -62,7 +69,7 @@ class ListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.list.count
+        return list.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

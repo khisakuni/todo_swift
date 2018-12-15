@@ -16,6 +16,7 @@
 		DE5460952198F5BB00631A22 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5460942198F5BB00631A22 /* ListTableViewController.swift */; };
 		DE61AD4321BE37AC00B7A5B0 /* ListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE61AD4221BE37AC00B7A5B0 /* ListCollectionViewController.swift */; };
 		DE61AD4521BE3C8F00B7A5B0 /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE61AD4421BE3C8F00B7A5B0 /* ListCollectionViewCell.swift */; };
+		DEB27CD921C4C452007AA9E2 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB27CD821C4C452007AA9E2 /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		DE5460942198F5BB00631A22 /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
 		DE61AD4221BE37AC00B7A5B0 /* ListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewController.swift; sourceTree = "<group>"; };
 		DE61AD4421BE3C8F00B7A5B0 /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
+		DEB27CD821C4C452007AA9E2 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				DE54608C2198A9BB00631A22 /* Info.plist */,
 				DE5460922198AAEF00631A22 /* List.swift */,
 				DE61AD4221BE37AC00B7A5B0 /* ListCollectionViewController.swift */,
+				DEB27CD821C4C452007AA9E2 /* TabBarController.swift */,
 			);
 			path = todo;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 				DE5460832198A9BA00631A22 /* TodoViewController.swift in Sources */,
 				DE5460812198A9BA00631A22 /* AppDelegate.swift in Sources */,
 				DE61AD4321BE37AC00B7A5B0 /* ListCollectionViewController.swift in Sources */,
+				DEB27CD921C4C452007AA9E2 /* TabBarController.swift in Sources */,
 				DE5460932198AAEF00631A22 /* List.swift in Sources */,
 				DE5460952198F5BB00631A22 /* ListTableViewController.swift in Sources */,
 			);

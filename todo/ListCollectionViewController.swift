@@ -10,18 +10,12 @@ import UIKit
 
 private let reuseIdentifier = "collectionHeader"
 
-class ListCollectionViewController: UICollectionViewController {
+class ListCollectionViewController: UICollectionViewController, Injectable {
     let searchController = UISearchController(searchResultsController: nil)
-    var list: List = List()
+    var list: List!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        list.add(value: "foo", category: "meow")
-        list.add(value: "foo", category: "meow")
-        list.add(value: "foo", category: "meow")
-        list.add(value: "foo", category: "meow")
-        
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         definesPresentationContext = true
@@ -34,6 +28,11 @@ class ListCollectionViewController: UICollectionViewController {
             reusableView.addSubview(searchController.searchBar)
         }
         return reusableView
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //super.viewDidAppear(animated)
+        collectionView?.reloadData()
     }
 
     // MARK: - Navigation
@@ -73,6 +72,10 @@ class ListCollectionViewController: UICollectionViewController {
         // Configure the cell
     
         return cell
+    }
+    
+    func inject(data: List) {
+        self.list = data
     }
 
     // MARK: UICollectionViewDelegate
